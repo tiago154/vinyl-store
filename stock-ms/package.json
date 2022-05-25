@@ -1,0 +1,29 @@
+{
+  "name": "stock-ms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [],
+  "author": "Tiago Santos Da Silva",
+  "license": "ISC",
+  "dependencies": {
+    "bullmq": "^1.77.2",
+    "dotenv": "^16.0.1",
+    "express": "^4.17.3",
+    "ioredis": "^4.28.5",
+    "uninstall": "^0.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0",
+    "nodemon": "^2.0.15"
+  }
+}

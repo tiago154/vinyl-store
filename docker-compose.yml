@@ -1,0 +1,53 @@
+version: '3.8'
+services:
+  queue-redis:
+    container_name: queue-redis
+    image: redis
+    restart: always
+    ports:
+      - 6379:6379
+  buy-ms:
+    container_name: buy-ms
+    build:
+      context: ./buy-ms
+    ports:
+      - 3000:3000
+    environment:
+      REDIS_HOST: queue-redis
+      REDIS_PORT: 6379
+      ORDER_HOST: http://order-ms:3003
+    depends_on:
+      - queue-redis
+  stock-ms:
+    container_name: stock-ms
+    build:
+      context: ./stock-ms
+    ports:
+      - 3001:3001
+    environment:
+      REDIS_HOST: queue-redis
+      REDIS_PORT: 6379
+    depends_on:
+      - queue-redis
+  payment-ms:
+    container_name: payment-ms
+    build:
+      context: ./payment-ms
+    ports:
+      - 3002:3002
+    environment:
+      REDIS_HOST: queue-redis
+      REDIS_PORT: 6379
+    depends_on:
+      - queue-redis
+  order-ms:
+    container_name: order-ms
+    build:
+      context: ./order-ms
+    ports:
+      - 3003:3003
+    environment:
+      REDIS_HOST: queue-redis
+      REDIS_PORT: 6379
+    depends_on:
+      - queue-redis
